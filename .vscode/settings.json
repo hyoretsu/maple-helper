@@ -1,0 +1,5 @@
+{
+	"[javascript][javascriptreact][json][typescript][typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	}
+}
