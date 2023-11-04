@@ -4,7 +4,7 @@ import FullClient from "../FullClient";
 
 const readyEvent: Event = {
 	name: Events.InteractionCreate,
-	once: true,
+	once: false,
 	async execute(interaction: Interaction) {
 		if (!interaction.isChatInputCommand()) {
 			return;

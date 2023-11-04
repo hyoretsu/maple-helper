@@ -2,7 +2,7 @@ import FullClient from "../FullClient";
 import { ChatInputCommandInteraction, Interaction, SlashCommandBuilder } from "discord.js";
 
 export type Command = {
-	data: SlashCommandBuilder;
+	data: SlashCommandBuilder | Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">;
 	execute: (interaction: ChatInputCommandInteraction) => Promise<void>;
 };
 
