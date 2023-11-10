@@ -7,18 +7,22 @@ import {
 } from "@discordjs/voice";
 import { Command } from "@types";
 import { Guild, GuildMember, SlashCommandBuilder, VoiceChannel } from "discord.js";
-import fs from "node:fs/promises";
+import extractFrames from "ffmpeg-extract-frames";
+import m3u8stream from "m3u8stream";
+import fs from "node:fs";
 import path from "node:path";
 import tts from "../utils/tts";
+import { sleep } from "@hyoretsu/utils";
 
 const mvpReminderCommand: Command = {
 	data: new SlashCommandBuilder()
 		.setName("mvp_reminder")
 		.setDescription("Starts the MVP bot by hopping into a voice channel.")
-		.addUserOption(option =>
+		.addStringOption(option =>
 			option
 				.setName("streamer")
-				.setDescription("The user that will be streaming and providing data to the bot."),
+				.setDescription("The twitch user that will be streaming and providing data to the bot.")
+				.setRequired(true),
 		)
 		.addChannelOption(option =>
 			option
@@ -77,7 +81,6 @@ const mvpReminderCommand: Command = {
 		),
 	async execute(interaction) {
 		const { id: guildId, voiceAdapterCreator: adapterCreator } = interaction.guild as Guild;
-		const { id: userId } = interaction.options.getUser("streamer") ?? interaction.member!.user;
 
 		const voiceChannel = (interaction.options.getChannel("channel") ??
 			(interaction.member as GuildMember).voice.channel) as VoiceChannel | null;
@@ -90,24 +93,22 @@ const mvpReminderCommand: Command = {
 			return;
 		}
 
-		const { id: channelId, members: channelUsers } = voiceChannel;
-		const chosenUser = channelUsers.get(userId);
+		const { id: channelId } = voiceChannel;
 
-		if (!chosenUser) {
-			await interaction.reply({
-				content: "The person streaming needs to be in a voice channel to start the bot.",
-				ephemeral: true,
-			});
-			return;
-		}
+		const res = await fetch(
+			`https://pwn.sh/tools/streamapi.py?url=https%3A%2F%2Fwww.twitch.tv%2F${interaction.options.getString(
+				"streamer",
+			)}`,
+		);
+		const { urls } = await res.json();
+		const streamUrl = Object.values(urls).at(-1) as string;
 
-		if (!chosenUser.voice.streaming) {
-			await interaction.reply({
-				content: "The selected person (or you) needs to be streaming in order to start the bot.",
-				ephemeral: true,
-			});
-			return;
-		}
+		const streamPipe = m3u8stream(streamUrl, { liveBuffer: 1, parser: "m3u8" }).pipe(
+			fs.createWriteStream("videofile.mp4"),
+		);
+		await sleep(2000);
+		streamPipe.end();
+		await extractFrames({ input: "videofile.mp4", output: "frame-%d.jpg" });
 
 		await interaction.reply({ content: "Hopping on for your grinding's joy.", ephemeral: true });
 
@@ -119,10 +120,14 @@ const mvpReminderCommand: Command = {
 
 		// Clean up generated reminder files on disconnection
 		connection.on(VoiceConnectionStatus.Disconnected, async () => {
-			await fs.rm(path.resolve("./tmp"), {
-				force: true,
-				recursive: true,
-			});
+			fs.rm(
+				path.resolve("./tmp"),
+				{
+					force: true,
+					recursive: true,
+				},
+				() => {},
+			);
 		});
 
 		const player = createAudioPlayer();
