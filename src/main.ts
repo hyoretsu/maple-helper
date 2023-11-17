@@ -1,8 +1,9 @@
 import FullClient from "FullClient";
-import { Events, GatewayIntentBits } from "discord.js";
+import { GatewayIntentBits } from "discord.js";
 import "dotenv/config";
 import getAllCommands from "utils/getAllCommands";
 import getAllEvents from "utils/getAllEvents";
+import "./deploy/commands";
 
 const client = new FullClient({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
 

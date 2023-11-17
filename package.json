@@ -1,9 +1,9 @@
 {
-	"name": "mvp-discord-bot",
+	"name": "maple-helper",
 	"main": "dist/main.js",
 	"private": true,
 	"scripts": {
-		"deploy:commands": "tsx ./deploy/commands.ts",
+		"deploy:commands": "tsx ./src/deploy/commands.ts",
 		"dev": "tsx watch ./src/main.ts",
 		"start": "node ./dist/main.js",
 		"prepare": "husky install && chmod ug+x .husky/*"

@@ -1,5 +1,5 @@
 import { REST, RESTPutAPIApplicationCommandsResult, Routes } from "discord.js";
-import getAllCommands from "../src/utils/getAllCommands";
+import getAllCommands from "../utils/getAllCommands";
 import "dotenv/config";
 
 // Construct and prepare an instance of the REST module

@@ -11,3 +11,7 @@ export type Event = {
 	once: boolean;
 	execute: (...args: any) => void;
 };
+
+declare module "*.json" {
+	export default Record<string, string>;
+}
