@@ -3,13 +3,15 @@
 	"main": "dist/main.js",
 	"private": true,
 	"scripts": {
+		"build": "tsup",
 		"deploy:commands": "tsx ./src/deploy/commands.ts",
 		"dev": "tsx watch ./src/main.ts",
 		"start": "node ./dist/main.js",
 		"prepare": "husky install && chmod ug+x .husky/*"
 	},
 	"lint-staged": {
-		"**/*.(json|js|jsx|ts|tsx)": ["biome format --write"]
+		"**/*.(json|js|jsx|ts|tsx)": ["biome format --write"],
+		"src/*.(js|jsx|ts|tsx)": ["pnpm build"]
 	},
 	"dependencies": {
 		"@discordjs/voice": "^0.16.0",
@@ -21,10 +23,12 @@
 		"google-tts-api": "^2.0.2",
 		"libsodium-wrappers": "^0.7.13",
 		"m3u8stream": "^0.8.6",
+		"tsup": "^7.3.0",
 		"typescript": "^5.2.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.3.3",
+		"@swc/core": "^1.3.96",
 		"husky": "^8.0.3",
 		"lint-staged": "^15.0.2",
 		"tsx": "^3.14.0"
