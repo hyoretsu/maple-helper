@@ -22,7 +22,7 @@ const classGuideCommand: Command = {
 			if (!guideLink) {
 				await interaction.reply({
 					content:
-						"Sorry, we don't have the guide for this class yet. Please contact the developer with a (preferrably permanent) link to the guide image.",
+						"Sorry, we don't have the guide for this class yet. Please contact the developer with a link to the image (Please run /class_server and get the link from there).",
 					ephemeral: true,
 				});
 
