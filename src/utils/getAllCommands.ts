@@ -1,6 +1,6 @@
-import { Command } from "@types";
 import fs from "node:fs";
 import path from "node:path";
+import { Command } from "../@types";
 
 const getAllCommands = () => {
 	const commands: Command[] = [];

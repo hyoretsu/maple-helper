@@ -1,7 +1,7 @@
 import { VoiceConnectionStatus } from "@discordjs/voice";
-import { Event } from "@types";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { Event } from "../@types";
 
 const disconnectedEvent: Event = {
 	name: VoiceConnectionStatus.Disconnected,

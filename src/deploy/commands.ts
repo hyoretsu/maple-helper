@@ -1,13 +1,13 @@
 import { REST, RESTPutAPIApplicationCommandsResult, Routes } from "discord.js";
-import getAllCommands from "../utils/getAllCommands";
 import "dotenv/config";
+import getAllCommands from "../utils/getAllCommands";
 
 // Construct and prepare an instance of the REST module
 const rest = new REST().setToken(process.env.DISCORD_TOKEN as string);
 
 (async () => {
 	try {
-		const commands = await getAllCommands();
+		const commands = getAllCommands();
 
 		console.log(`Started refreshing ${commands.length} application (/) commands.`);
 

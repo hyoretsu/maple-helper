@@ -1,5 +1,5 @@
-import { Event } from "@types";
 import { Events, Interaction } from "discord.js";
+import { Event } from "../@types";
 import FullClient from "../FullClient";
 
 const readyEvent: Event = {

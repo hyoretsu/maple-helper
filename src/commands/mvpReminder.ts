@@ -5,14 +5,14 @@ import {
 	createAudioResource,
 	joinVoiceChannel,
 } from "@discordjs/voice";
-import { Command } from "@types";
+import { sleep } from "@hyoretsu/utils";
 import { Guild, GuildMember, SlashCommandBuilder, VoiceChannel } from "discord.js";
 import extractFrames from "ffmpeg-extract-frames";
 import m3u8stream from "m3u8stream";
 import fs from "node:fs";
 import path from "node:path";
+import { Command } from "../@types";
 import tts from "../utils/tts";
-import { sleep } from "@hyoretsu/utils";
 
 const mvpReminderCommand: Command = {
 	data: new SlashCommandBuilder()
