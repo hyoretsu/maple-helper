@@ -43,12 +43,12 @@ const ursusTimerCommand: Command = {
 			return;
 		}
 
-		const hours = Math.trunc(delta / (60 * 60));
-		const minutes = Math.ceil((delta / 60) % 60);
+		const hours = delta / (60 * 60);
+		const minutes = ((hours % 1) * 60) % 60;
 
 		let content = "There are only";
 		if (hours > 0) {
-			content += ` ${hours} hour`;
+			content += ` ${Math.floor(hours)} hour`;
 
 			if (hours > 1) {
 				content += "s";
@@ -60,7 +60,7 @@ const ursusTimerCommand: Command = {
 		}
 
 		if (minutes > 0) {
-			content += ` ${minutes} minute`;
+			content += ` ${Math.ceil(minutes)} minute`;
 
 			if (minutes > 1) {
 				content += "s";
@@ -69,10 +69,10 @@ const ursusTimerCommand: Command = {
 
 		content += ` left until Ursus 2x${inProgress ? " ends" : ""}.`;
 
-		content += `\n\nThe (local) times for Ursus 2x are:\n- ${format(ursusAmTime[0], "H a")} until ${format(
+		content += `\n\nThe (local) times for Ursus 2x are:\n- ${format(ursusAmTime[0], "h a")} until ${format(
 			ursusAmTime[1],
-			"H a",
-		)}\n- ${format(ursusPmTime[0], "H a")} until ${format(ursusPmTime[1], "H a")}`;
+			"h a",
+		)}\n- ${format(ursusPmTime[0], "h a")} until ${format(ursusPmTime[1], "h a")}`;
 
 		await interaction.reply({
 			content,
