@@ -16,6 +16,7 @@
 	"dependencies": {
 		"@discordjs/voice": "^0.16.0",
 		"@hyoretsu/utils": "^1.6.0",
+		"date-fns": "^2.30.0",
 		"discord.js": "^14.13.0",
 		"dotenv": "^16.3.1",
 		"ffmpeg-extract-frames": "^2.0.2",
