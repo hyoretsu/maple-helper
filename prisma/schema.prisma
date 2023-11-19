@@ -1,0 +1,25 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("POSTGRES_URL")
+}
+
+model Party {
+    id        String   @id @default(uuid())
+    name      String
+    members   User[]
+    roleId    String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+model User{
+    id        String   @id
+    username  String
+    parties   Party[]
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}

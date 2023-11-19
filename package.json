@@ -3,11 +3,11 @@
 	"main": "dist/main.js",
 	"private": true,
 	"scripts": {
-		"build": "tsup",
+		"build": "tsup && prisma migrate deploy",
 		"deploy:commands": "tsx ./src/deploy/commands.ts",
 		"dev": "tsx watch ./src/main.ts",
 		"start": "node ./dist/main.js",
-		"prepare": "husky install && chmod ug+x .husky/*"
+		"prepare": "husky install && chmod ug+x .husky/* && prisma generate"
 	},
 	"lint-staged": {
 		"**/*.(json|js|jsx|ts|tsx)": ["biome format --write"],
@@ -16,6 +16,7 @@
 	"dependencies": {
 		"@discordjs/voice": "^0.16.0",
 		"@hyoretsu/utils": "^1.6.0",
+		"@prisma/client": "^5.6.0",
 		"date-fns": "^2.30.0",
 		"discord.js": "^14.13.0",
 		"dotenv": "^16.3.1",
@@ -32,6 +33,7 @@
 		"@swc/core": "^1.3.96",
 		"husky": "^8.0.3",
 		"lint-staged": "^15.0.2",
+		"prisma": "^5.6.0",
 		"tsx": "^3.14.0"
 	}
 }

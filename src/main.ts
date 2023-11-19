@@ -1,9 +1,12 @@
+import { PrismaClient } from "@prisma/client";
 import { GatewayIntentBits } from "discord.js";
 import FullClient from "./FullClient";
 import getAllCommands from "./utils/getAllCommands";
 import getAllEvents from "./utils/getAllEvents";
 import "dotenv/config";
 import "./deploy/commands";
+
+export const prisma = new PrismaClient();
 
 const client = new FullClient({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
 
