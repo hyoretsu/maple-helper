@@ -2,12 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { Command } from "../@types";
 
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.RAILWAY_ENVIRONMENT_NAME === "production";
 
 const getAllCommands = () => {
 	const commands: Command[] = [];
 
-	const commandsPath = path.join(__dirname, ...(isProduction ? [] : [".."]), "commands");
+	const commandsPath = path.join(process.cwd(), isProduction ? "dist" : "src", "commands");
 	const commandFiles = fs
 		.readdirSync(commandsPath)
 		.filter(file => file.endsWith(isProduction ? ".js" : ".ts"));

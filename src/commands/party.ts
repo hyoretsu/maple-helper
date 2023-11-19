@@ -1,8 +1,8 @@
 import { SlashCommandBuilder, User } from "discord.js";
 import { Command } from "../@types";
-import { prisma } from "../main";
+import { prisma } from "../database";
 
-const commerciCommand: Command = {
+const partyCommand: Command = {
 	data: new SlashCommandBuilder()
 		.setName("party")
 		.setDescription("Party-related commands")
@@ -89,4 +89,4 @@ const commerciCommand: Command = {
 	},
 };
 
-export default commerciCommand;
+export default partyCommand;

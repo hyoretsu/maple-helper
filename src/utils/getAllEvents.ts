@@ -2,12 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { Event } from "../@types";
 
-const isProduction = process.env.NODE_ENV === "production";
+const isProduction = process.env.RAILWAY_ENVIRONMENT_NAME === "production";
 
 const getAllEvents = () => {
 	const events: Event[] = [];
 
-	const eventsPath = path.join(__dirname, ...(isProduction ? [] : [".."]), "events");
+	const eventsPath = path.join(process.cwd(), isProduction ? "dist" : "src", "events");
 	const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith(isProduction ? ".js" : ".ts"));
 
 	for (const file of eventFiles) {
