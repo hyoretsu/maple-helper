@@ -2,6 +2,8 @@ import { REST, RESTPutAPIApplicationCommandsResult, Routes } from "discord.js";
 import "dotenv/config";
 import getAllCommands from "../utils/getAllCommands";
 
+const isProduction = process.env.NODE_ENV === "production";
+
 // Construct and prepare an instance of the REST module
 const rest = new REST().setToken(process.env.DISCORD_TOKEN as string);
 
@@ -13,7 +15,7 @@ const rest = new REST().setToken(process.env.DISCORD_TOKEN as string);
 
 		let route: `/${string}`;
 
-		if (process.env.NODE_ENV === "production") {
+		if (isProduction) {
 			route = Routes.applicationCommands(process.env.CLIENT_ID as string);
 		} else {
 			route = Routes.applicationGuildCommands(
