@@ -7,19 +7,43 @@ datasource db {
     url      = env("POSTGRES_URL")
 }
 
+model BattleAnalysis {
+    id          String    @id @default(uuid())
+    value       Float
+    type        String
+    link        String?
+    characterId String
+    character   Character @relation(fields: characterId, references: id)
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+}
+
+model Character {
+    id        String           @id @default(uuid())
+    nickname  String          @unique
+    level     Int?
+    parties   Party[]
+    bas       BattleAnalysis[]
+    userId    String
+    user      User             @relation(fields: userId, references: id)
+    createdAt DateTime         @default(now())
+    updatedAt DateTime         @updatedAt
+}
+
 model Party {
-    id        String   @id @default(uuid())
+    id        String           @id @default(uuid())
     name      String
-    members   User[]
     roleId    String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    channelId String
+    members   Character[]
+    createdAt DateTime         @default(now())
+    updatedAt DateTime         @updatedAt
 }
 
 model User{
-    id        String   @id
-    username  String
-    parties   Party[]
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id         String      @id
+    username   String
+    characters Character[]
+    createdAt  DateTime    @default(now())
+    updatedAt  DateTime    @updatedAt
 }
