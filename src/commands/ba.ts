@@ -84,14 +84,14 @@ const partyCommand: Command = {
 			case "help": {
 				await interaction.reply({
 					content:
-						"Instructions:\n- **Black Mage**: Same as full rotation, but locked at lv275. You may set AF to 1320, but it won't change anything.\n- **Full rotation**: Your BA, from one burst to the other. Same level, high def (300), no AF/SAC, elemental reduction dummy. Measured in b/s.\n- **Hard Lucid**: Your BA in exactly 40s. Lv230, high def (300), 320 SAC, elemental reduction dummy. Fully setup before starting.",
+						"Instructions:\n- **Black Mage**: Same as full rotation, but locked at lv275. You may set AF to 1320, but it won't change anything.\n- **Full rotation**: Your BA, from one burst to the other. Same level, high def (300), no AF/SAC, elemental reduction dummy. Measured in b/s.\n- **Hard Lucid**: Your BA in exactly 40s. Lv230, high def (300), 320 AF, elemental reduction dummy. Fully setup before starting.",
 					ephemeral: true,
 				});
 
 				return;
 			}
 			case "show": {
-				const nickname = interaction.options.getString("character");
+				const nickname = interaction.options.getString("character") as string;
 
 				const bas = await prisma.battleAnalysis.findMany({
 					where: {

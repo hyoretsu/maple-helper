@@ -1,5 +1,10 @@
 import FullClient from "../FullClient";
-import { ChatInputCommandInteraction, Interaction, SlashCommandBuilder } from "discord.js";
+import {
+	AutocompleteInteraction,
+	ChatInputCommandInteraction,
+	Interaction,
+	SlashCommandBuilder,
+} from "discord.js";
 
 type NormalCommand = Omit<SlashCommandBuilder, "addSubcommand" | "addSubcommandGroup">;
 type SubCommand = Omit<
@@ -18,6 +23,7 @@ type SubCommand = Omit<
 export type Command = {
 	data: NormalCommand | SubCommand;
 	execute: (interaction: ChatInputCommandInteraction) => Promise<void>;
+	autocomplete?: (interaction: AutocompleteInteraction) => Promise<void>;
 };
 
 export type Event = {
