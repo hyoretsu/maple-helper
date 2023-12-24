@@ -11,7 +11,7 @@ const threadsOfFateCommand: Command = {
 			command
 				.setName("farming")
 				.setDescription(
-					"Optimized potion farming guide. Only needed if you want to min-max or to keep it in mind.",
+					"Optimized potion farming guide. Only needed if you want to min-max or keep it in mind.",
 				),
 		)
 		.addSubcommand(command => command.setName("gifts").setDescription("List of gifts for all the NPC's."))
@@ -21,7 +21,9 @@ const threadsOfFateCommand: Command = {
 				.setDescription("What you must do to unlock the daily farming. I recommend you to start here."),
 		)
 		.addSubcommand(command => command.setName("skills").setDescription("List of every NPC's skill."))
-		.addSubcommand(command => command.setName("strategy").setDescription("List of gifts for all the NPC's.")),
+		.addSubcommand(command =>
+			command.setName("strategy").setDescription("What to do after you unlock the daily farming."),
+		),
 	async execute(interaction) {
 		switch (interaction.options.getSubcommand()) {
 			case "farming":

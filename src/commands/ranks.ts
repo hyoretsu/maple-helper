@@ -6,7 +6,7 @@ const supportCommand: Command = {
 	async execute(interaction) {
 		await interaction.reply({
 			content:
-				"I don't want to rip off his work just to make my bot more complete, so [here](https://mapleranks.com)'s the link to their site or, if you prefer, the [invite link](https://discord.com/api/oauth2/authorize?client_id=895756174891302962&permissions=8&scope=bot%20applications.commands) to their bot.",
+				"I don't want to rip off his work just to make my bot more complete, so [here](https://mapleranks.com)'s the link to their site or, if you prefer, the [invite link](https://discord.com/api/oauth2/authorize?client_id=895756174891302962&permissions=8&scope=bot%20applications.commands) of their bot.",
 			ephemeral: true,
 		});
 	},

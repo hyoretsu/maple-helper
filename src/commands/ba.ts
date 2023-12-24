@@ -35,7 +35,7 @@ const partyCommand: Command = {
 		.addSubcommand(option =>
 			option
 				.setName("show")
-				.setDescription("View your BAs.")
+				.setDescription("View someone's BAs.")
 				.addStringOption(option =>
 					option
 						.setName("character")
@@ -75,7 +75,7 @@ const partyCommand: Command = {
 					option
 						.setName("screenshot")
 						.setDescription(
-							"A (permament) link to your BA screenshot, in case you also want to safekeep it.",
+							"A link to your BA screenshot (optional). I recommend sending them to the bot's DM.",
 						),
 				),
 		),
