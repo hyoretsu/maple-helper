@@ -1,0 +1,26 @@
+## List of commands
+- `/ba help` - Instructions for each type of BA.
+- `/ba show` - View someone's BAs.
+- `/ba update` - Update your or your party members's BAs.
+- `/boss_reset_timer` - Amount of time left for weekly bosses to reset.
+- `/class_guide` - Easy-to-get class guide images.
+- `/class_server` - Easy-to-get link for any class server.
+- `/commerci` - Easy-to-get Commerci guide.
+- `/hmuto_guide` - Material guide for HMuto.
+- `/ied calculate` - Calculate how much damage you'll gain by getting more IED (either new or existing sources).
+- `/ied compare` - Calculate how much damage you'll deal at various IED levels.
+- `/ied effectiveness` - Damage dealt to bosses at various IED levels. Credits: [u/Ephine](https://www.reddit.com/user/Ephine).
+- `/legion_effects` - List of all legion effects.
+- `/link_skills` - Descriptions of all link skills.
+- `/max_drop_rate` - Quick guide on getting to 400% (394% for most people) Drop Rate.
+- `/oz_ring_rates` - Rates to get RoR, WJ or CR level 3/4 in all of the boxes. Credits to [u/xMilkies](https://www.reddit.com/user/xMilkies).
+- `/party ba` - View all the BAs of a party.
+- `/party create` - Create a new party.
+- `/personal_research_guide` - A guide to maximize EXP gains from Guild Castle's personal research. Credits: [u/TwigodMS](https://www.reddit.com/user/TwigodMS).
+- `/phantom_forest_map` - Easy-to-follow Phantom Forest map.
+- `/support` - If you need any help or want to report a bug.
+- `/threads_of_fate farming` - Optimized potion farming guide. Only needed if you want to min-max or keep it in mind.
+- `/threads_of_fate gifts` - List of gifts for all the NPC's.
+- `/threads_of_fate requirements` - What you must do to unlock the daily farming. I recommend you to start here.
+- `/threads_of_fate strategy` - What to do after you unlock the daily farming.
+- `/ursus_timer` - Amount of time left for Ursus 2x.
