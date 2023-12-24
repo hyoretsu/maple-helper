@@ -11,7 +11,7 @@ const calculateDmgDealt = (ied: number, pdr: number, percent = true) => {
 const iedCommand: Command = {
 	data: new SlashCommandBuilder()
 		.setName("ied")
-		.setDescription("IED-related commands")
+		.setDescription("IED-related commands.")
 		.addSubcommand(command =>
 			command
 				.setName("calculate")
@@ -180,7 +180,7 @@ const iedCommand: Command = {
 					.split(",")
 					.map(value => Number(value));
 				let pdr = interaction.options.getNumber("pdr") as number;
-				const boss = interaction.options.getNumber("boss");
+				const boss = interaction.options.getString("boss");
 
 				if (ied.length < 2) {
 					await interaction.reply({
@@ -216,6 +216,8 @@ const iedCommand: Command = {
 
 						return;
 					}
+				} else if (!pdr) {
+					pdr = 300;
 				}
 
 				await interaction.reply({

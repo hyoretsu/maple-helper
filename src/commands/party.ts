@@ -2,16 +2,16 @@ import { CategoryChannel, ChannelType, SlashCommandBuilder, TextChannel, User } 
 import { Command } from "../@types";
 import { prisma } from "../database";
 import { Character } from "@prisma/client";
-import { baNames, baTypes, baUnits, generateBaText } from "./ba";
+import { generateBaText } from "./ba";
 
 const partyCommand: Command = {
 	data: new SlashCommandBuilder()
 		.setName("party")
-		.setDescription("Party-related commands")
+		.setDescription("Party-related commands.")
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName("ba")
-				.setDescription("View all the BAs of a party")
+				.setDescription("View all the BAs of a party.")
 				.addStringOption(option =>
 					option.setName("name").setDescription("The name of the party.").setRequired(true),
 				)
@@ -33,7 +33,7 @@ const partyCommand: Command = {
 		.addSubcommand(subcommand =>
 			subcommand
 				.setName("create")
-				.setDescription("Create a new party")
+				.setDescription("Create a new party.")
 				.addStringOption(option =>
 					option.setName("name").setDescription("The name of the party.").setRequired(true),
 				)
@@ -71,7 +71,7 @@ const partyCommand: Command = {
 		switch (interaction.options.getSubcommand()) {
 			case "ba": {
 				const partyName = interaction.options.getString("name") as string;
-				const nickname = interaction.options.getString("character");
+				const nickname = interaction.options.getString("character") ?? undefined;
 				const user = interaction.options.getUser("user");
 
 				const userId = user?.id || interaction.user.id;
@@ -79,7 +79,21 @@ const partyCommand: Command = {
 
 				const parties = await prisma.party.findMany({
 					where: {
-						name: partyName,
+						OR: [
+							{ name: partyName },
+							{
+								members: {
+									some: {
+										OR: [
+											{ nickname },
+											{
+												user: { username },
+											},
+										],
+									},
+								},
+							},
+						],
 					},
 					include: {
 						members: {
@@ -95,7 +109,7 @@ const partyCommand: Command = {
 				if (parties.length === 0) {
 					await interaction.reply({
 						content:
-							"It seems the party you're looking for doesn't exist in our database yet or you made a spelling mistake. Please try again.",
+							"It seems the party you're looking for doesn't exist in our database or we couldn't pinpoint it, please try again. (If you believe this is a bug, please report it by running `/support`",
 						ephemeral: true,
 					});
 

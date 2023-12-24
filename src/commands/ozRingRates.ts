@@ -4,7 +4,7 @@ import { Command } from "../@types";
 const ozRingRatesCommand: Command = {
 	data: new SlashCommandBuilder()
 		.setName("oz_ring_rates")
-		.setDescription("Rates to get RoR, WJ or CR level 3/4 in all of the boxes. Credits to u/xMilkies"),
+		.setDescription("Rates to get RoR, WJ or CR level 3/4 in all of the boxes. Credits to u/xMilkies."),
 	async execute(interaction) {
 		await interaction.reply({
 			content:
